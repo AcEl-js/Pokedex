@@ -29,6 +29,11 @@ return map[string]cliCommand{
         description: "Exit the Pokedex",
         callback:    callBackExit,
     },
+        "map": {
+        name:        "map",
+        description: "Get Pokemon map",
+        callback:    callBackMap,
+    },
 }
 }
     
@@ -44,6 +49,7 @@ func cleanCli(command string)[]string{
 // creat a REPL program 
 
 func startRepl () {
+
     scanner := bufio.NewScanner(os.Stdin)
     for {
     fmt.Print("pokedex >")

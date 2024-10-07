@@ -10,6 +10,9 @@ func callBackHelp(){
     
         fmt.Println("Welcome to the Pokedex!")
         fmt.Println("usage!:")
-        fmt.Println("help: Displays a help message")
-        fmt.Println("exit: Exit the Pokedex")
-}
+     avilablecommand := getCommand()
+   for _,command := range avilablecommand {
+
+        fmt.Printf(" %s: %s/n",command.name,command.description)
+    }
+} 
