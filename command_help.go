@@ -6,7 +6,7 @@ import "fmt"
 
 
 
-func callBackHelp(cfg *config) error{
+func callBackHelp(cfg *config, mapArea string) error{
     
         fmt.Println("Welcome to the Pokedex!")
         fmt.Println("usage!:")

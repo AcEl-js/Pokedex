@@ -5,7 +5,7 @@ import (
 
 )
 
-func callBackMap(cfg *config) error{
+func callBackMap(cfg *config, mapArea string) error{
      // get pokemon maps data
     location,err := cfg.pokeapiClient.GetLocationData(cfg.nextLocationUrl)
 
