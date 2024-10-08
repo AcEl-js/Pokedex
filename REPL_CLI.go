@@ -12,7 +12,7 @@ import (
 type cliCommand struct {
 	name        string
 	description string
-	callback    func() 
+	callback    func(cfg *config)error 
 }
 
 // mangen the command response 
@@ -34,6 +34,11 @@ return map[string]cliCommand{
         description: "Get Pokemon map",
         callback:    callBackMap,
     },
+        "mapp": {
+        name:        "mapp",
+        description: "Get Pokemon map",
+        callback:    callBackMapPrivous,
+    },
 }
 }
     
@@ -48,7 +53,7 @@ func cleanCli(command string)[]string{
 
 // creat a REPL program 
 
-func startRepl () {
+func startRepl (cfg *config) {
 
     scanner := bufio.NewScanner(os.Stdin)
     for {
@@ -65,7 +70,10 @@ func startRepl () {
             fmt.Println("invalid command (:")
         continue
         }
-        command.callback()
+        err := command.callback(cfg)
+        if err != nil{
+            fmt.Errorf("failed to call map",err)
+        }
 
 
 

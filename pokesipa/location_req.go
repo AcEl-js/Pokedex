@@ -6,10 +6,13 @@ import (
     "net/http"
 )
 
-func (c *Client) GetLocationData() (Location,error) {
+func (c *Client) GetLocationData(pageUrl *string) (Location,error) {
     
     endpoint := "/location-area"
     fullUrl := baseUrl + endpoint
+    if pageUrl != nil {
+        fullUrl = *pageUrl
+    }
 	req, err := http.NewRequest("GET",fullUrl, nil)
     if err != nil {
         return Location{},err

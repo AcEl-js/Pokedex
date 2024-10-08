@@ -3,21 +3,22 @@ package main
 import (
 	"fmt"
 
-	pokeapi "github.com/AcEl-js/Pokedex/pokesipa"
 )
 
-func callBackMap(){
+func callBackMap(cfg *config) error{
      // get pokemon maps data
-    pokeapiClient := pokeapi.NewClient()
-    location,err := pokeapiClient.GetLocationData()
+    location,err := cfg.pokeapiClient.GetLocationData(cfg.nextLocationUrl)
 
     if err != nil {
         fmt.Println("Error fetching location data: ",err)
-        return
+        return err
     }
     for _, result := range location.Results {
         fmt.Println("Location Name:", result.Name)
     }
+    cfg.nextLocationUrl = location.Next
+    cfg.prevousLocationUrl = location.Previous
+    return nil
 
 
 }

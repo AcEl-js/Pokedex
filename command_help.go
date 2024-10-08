@@ -6,7 +6,7 @@ import "fmt"
 
 
 
-func callBackHelp(){
+func callBackHelp(cfg *config) error{
     
         fmt.Println("Welcome to the Pokedex!")
         fmt.Println("usage!:")
@@ -15,4 +15,5 @@ func callBackHelp(){
 
         fmt.Printf(" %s: %s/n",command.name,command.description)
     }
+    return nil
 } 
