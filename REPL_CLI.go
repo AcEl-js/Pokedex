@@ -12,7 +12,7 @@ import (
 type cliCommand struct {
 	name        string
 	description string
-	callback    func(cfg *config,mapArea string)error 
+	callback    func(cfg *config,mapArea string,name string)error 
 }
 
 // mangen the command response 
@@ -43,6 +43,11 @@ return map[string]cliCommand{
         name:        "explore",
         description: "exolore existing pokemons in a location Area",
         callback:    callBackExplore,
+    },
+    "catch": {
+        name:        "catch",
+        description: "catche a pokemon",
+        callback:    callBackCatch,
     },
 }
 }
@@ -82,16 +87,26 @@ func startRepl (cfg *config) {
                 fmt.Println("please enter the location area")
 
         }
-        if len(cleaned) ==2 && commandName=="explore"{
-        commandName2 := cleaned[1]
-      err := command.callback(cfg,commandName2)
-        if err != nil{
-            fmt.Errorf("failed to call map",err)
-        }
+        if len(cleaned) ==2 {
+            switch commandName{
+            case "explore":
+            err := command.callback(cfg,cleaned[1],"")
+            if err != nil{
+            fmt.Println(err)
+            }
             continue
-        }
+             
 
-        err := command.callback(cfg,"")
+            case "catch":
+                err := command.callback(cfg,"", cleaned[1])
+            if err != nil{
+                    fmt.Println(err)
+                }
+            continue
+            }
+
+        } 
+        err := command.callback(cfg,"","")
         if err != nil{
             fmt.Errorf("failed to call map",err)
         }

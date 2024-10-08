@@ -3,7 +3,7 @@ package main
 import "fmt"
 
 
-func callBackExplore(cfg *config,mapArea string) error{
+func callBackExplore(cfg *config,mapArea string,name string) error{
     pokemons,err:= cfg.pokeapiClient.ExploreLocation(mapArea)
     if err != nil{
         return err

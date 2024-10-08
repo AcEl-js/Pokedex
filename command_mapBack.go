@@ -6,7 +6,7 @@ import (
 
 )
 
-func callBackMapPrivous(cfg *config,mapArea string) error{
+func callBackMapPrivous(cfg *config,mapArea string,name string) error{
      // get pokemon maps data
     location,err := cfg.pokeapiClient.GetLocationData(cfg.prevousLocationUrl)
 
