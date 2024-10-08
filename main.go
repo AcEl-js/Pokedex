@@ -1,6 +1,10 @@
 package main
 
-import pokeapi "github.com/AcEl-js/Pokedex/pokesipa"
+import (
+	"time"
+
+	pokeapi "github.com/AcEl-js/Pokedex/internal/pokesipa"
+)
 
 
 type config struct{
@@ -12,7 +16,7 @@ type config struct{
 
 func main () {
     cfg := config{
-        pokeapiClient: pokeapi.NewClient(),
+        pokeapiClient: pokeapi.NewClient(5*time.Minute),
 
     }
      startRepl(&cfg)

@@ -36,7 +36,7 @@ return map[string]cliCommand{
     },
         "mapp": {
         name:        "mapp",
-        description: "Get Pokemon map",
+        description: "go to privous map location",
         callback:    callBackMapPrivous,
     },
 }

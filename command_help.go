@@ -13,7 +13,7 @@ func callBackHelp(cfg *config) error{
      avilablecommand := getCommand()
    for _,command := range avilablecommand {
 
-        fmt.Printf(" %s: %s/n",command.name,command.description)
+        fmt.Printf(" %s: %s \n",command.name,command.description)
     }
     return nil
 } 
