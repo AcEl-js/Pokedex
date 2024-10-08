@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"math/rand"
 	"time"
+
 )
 
 
@@ -18,24 +19,31 @@ fmt.Println("Throwing a Pokeball at "+ name,"...")
     baseExperience, err := cfg.pokeapiClient.GetPokemonInfo(name)
    if err != nil{
       return err
-    } 
-    difficilty := 1 - (float64(baseExperience)/350)
-    isCaught := randomBool(difficilty)
-    fmt.Println("random :",isCaught)
-    fmt.Println("dificulty :",difficilty)
-    fmt.Println("baseEx :",baseExperience)
-    var myPokemons []string
-    
-    if isCaught{
-        myPokemons = append(myPokemons, name)
-        fmt.Println(name,"was caught!")
-
-    }else{
-
-        fmt.Println(name,"escaped!")
     }
-
-    
-return nil
+    // Check if the Pokemon is already caught
+isCaughtAlready := false
+for _, pokemon := range cfg.myPokemons {
+    if name == pokemon {
+        fmt.Println("already caught", name)
+        isCaughtAlready = true
+        break // Exit the loop if found
+    }
 }
-    
+
+// If not caught already, attempt to catch the Pokemon
+if !isCaughtAlready {
+    difficilty := 1 - (float64(baseExperience) / 350)
+    isCaught := randomBool(difficilty)
+
+    if isCaught {
+        cfg.myPokemons = append(cfg.myPokemons, name)
+        fmt.Println(name, "was caught!")
+    } else {
+        fmt.Println(name, "escaped!")
+    }
+}
+
+
+
+    return nil
+}

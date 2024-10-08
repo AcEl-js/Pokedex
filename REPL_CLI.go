@@ -49,6 +49,12 @@ return map[string]cliCommand{
         description: "catche a pokemon",
         callback:    callBackCatch,
     },
+     "mypokemons": {
+        name:        "mypokelons",
+        description: "pokemons you caught ",
+        callback:    callBackMypokemons,
+    },
+
 }
 }
     
